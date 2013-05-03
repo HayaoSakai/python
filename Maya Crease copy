@@ -1,0 +1,10 @@
+import maya.cmds as mc
+
+sel_obj =  mc.ls(sl=True,shapes=True,dag=True);
+print sel_obj
+crease_node = mc.listConnections(sel_obj[0]+'.inMesh', d=False, s=True )
+print crease_node[0]+".output"
+print sel_obj[3]+".inMesh"
+mc.connectAttr(crease_node[0]+".output",sel_obj[1]+".inMesh")
+
+
