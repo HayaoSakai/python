@@ -1,0 +1,28 @@
+import maya.cmds as cmds
+
+def IkfkConstrain():
+  #Selects_Joints
+	sel = cmds.ls(sl=True,type="joint")
+	#print sel
+	#Create_Connect_Nodes
+	if cmds.objExists('multiplyDivide_IKFK') == False:
+		print "Create Node"
+		dri_obj = "pSphere1"
+		cmds.addAttr(dri_obj,ln="test",at="float",min=0,max=1,k=True)
+		mlt = cmds.shadingNode('multiplyDivide',au=True,n="multiplyDivide_IKFK")
+		rev = cmds.shadingNode('reverse',au=True,n="reverse_IKFK")
+		cmds.connectAttr(mlt+".output.outputX",rev+".input.inputX")
+		cmds.connectAttr(dri_obj+".test",mlt+".input1.input1X")
+	else:
+		print "have already"
+	#Connect
+	for i in sel:
+		#print i
+		FK_obj = cmds.parentConstraint("FK_"+i,i,mo=True)
+		IK_obj = cmds.parentConstraint("IK_"+i,i,mo=True)
+		#print FK_obj
+		#print IK_obj
+		cmds.connectAttr("reverse_IKFK.outputX",FK_obj[0]+".FK_"+i+"W0")
+		cmds.connectAttr("multiplyDivide_IKFK.outputX",IK_obj[0]+".IK_"+i+"W1")
+#Function_Run
+IkfkConstrain()
