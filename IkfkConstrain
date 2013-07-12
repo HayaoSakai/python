@@ -24,5 +24,5 @@ def IkfkConstrain():
 		#print IK_obj
 		cmds.connectAttr("reverse_IKFK.outputX",FK_obj[0]+".FK_"+i+"W0")
 		cmds.connectAttr("multiplyDivide_IKFK.outputX",IK_obj[0]+".IK_"+i+"W1")
-#Function_Run
+#Function_Run_
 IkfkConstrain()
