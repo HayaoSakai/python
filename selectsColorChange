@@ -1,7 +1,7 @@
 import maya.cmds as mc
 
 def selectsColorChange():
-	sel	= mc.ls(sl=True)
+	sel = mc.ls(sl=True)
 	for i in sel:
 		#print i
 		shape = mc.listRelatives(i,shapes=True)
