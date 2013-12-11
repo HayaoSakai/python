@@ -1,0 +1,17 @@
+import maya.cmds as mc
+
+def PivotCreateLocator():
+	sel = mc.ls(sl=True)
+	for i in sel:
+		if mc.objExists(i) == True:
+			pobj = mc.xform(i,q=True,sp=True,ws=True)
+			#print pobj
+			x = pobj[0]
+			y = pobj[1]
+			z = pobj[2]
+			loc = mc.spaceLocator(p=(x,y,z))
+			mc.CenterPivot(loc)
+			print "create Locator"
+		else:
+			print "not select object"
+		
