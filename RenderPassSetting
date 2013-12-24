@@ -1,0 +1,8 @@
+MEL
+
+  shadingNode -asRendering renderPass;
+  applyAttrPreset "renderPass1" "C:/Program Files/Autodesk/Maya2013/presets/attrPresets/renderPass/diffuseMaterialColor.mel" 1;
+  rename "renderPass1" "diffuseMaterialColor";
+  setAttr diffuseMaterialColor.numChannels 4;
+  connectAttr -nextAvailable defaultRenderLayer.renderPass diffuseMaterialColor.owner;
+
