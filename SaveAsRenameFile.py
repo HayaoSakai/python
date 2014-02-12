@@ -1,5 +1,5 @@
 import maya.cmds as cmds
-def RenameFile():
+def SaveAsRenameFile():
   #Now_open_file_name
 	name = cmds.file(q=True,shortName=True,sceneName=True)
 	#Split_file_name
@@ -18,4 +18,4 @@ def RenameFile():
 		cmds.file(rename=name4)
 		cmds.file(save=True, type='mayaBinary')
 	
-RenameFile()
+SaveAsRenameFile()
